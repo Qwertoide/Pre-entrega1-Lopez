@@ -1,0 +1,8 @@
+.row > div {
+    margin-bottom: 20px; /* Espaciado entre las filas */
+  }
+  
+  .container {
+    padding: 20px; /* Espaciado alrededor del contenedor */
+  }
+  

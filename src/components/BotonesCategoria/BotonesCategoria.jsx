@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { Items } from '../../asyncMock'; 
+// import { Items } from '../../asyncMock'; 
 import { Link } from 'react-router-dom';
 
 export const categoriasUnicas = [...new Set(Items.map(producto => producto.category))];
@@ -29,9 +29,9 @@ export function Boton() {
 export function BotonesCategoria() {
     return (
         
-        <Dropdown>
+        <Dropdown className="text-center">
 
-            <Dropdown.Toggle variant="primary">
+            <Dropdown.Toggle variant="outline-dark" >
                 Categorías
             </Dropdown.Toggle>
             <Boton/>

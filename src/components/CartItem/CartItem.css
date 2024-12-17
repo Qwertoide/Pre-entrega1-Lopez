@@ -1,0 +1,136 @@
+/* General Styles */
+.CardCartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Mejor alineación vertical */
+  width: auto;
+  padding: 16px 20px;
+  margin: 20px auto; /* Espaciado superior e inferior */
+  font-size: 16px;
+  background-color: #f9f9f9; /* Fondo neutro */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: calc(100% - 80px); /* Garantiza que la tarjeta quede a 20px de los bordes */
+}
+
+.CardCartItem:hover {
+  transform: scale(1.02); /* Efecto de hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.CardCartItem-compact {
+  font-size: 0.85rem;
+  padding: 10px;
+  margin: 10px auto; /* Espaciado reducido */
+  background-color: #f0f0f0; /* Fondo más suave */
+  border: 1px solid #ccc;
+  max-width: calc(100% - 40px); /* También aplica el margen lateral en compacto */
+}
+
+.InfoCartItem {
+  margin-right: 20px;
+  font-size: 16px;
+  color: #555;
+  font-weight: 500; /* Negrita leve */
+}
+
+.ContainerItemCartItem {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+  gap: 8px; /* Espacio uniforme entre elementos */
+  color: #333;
+}
+
+.ItemHeaderCartItem {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #444;
+}
+
+.ItemFooterCartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ButtonCartItem {
+  padding: 10px 15px;
+  font-size: 14px;
+  background: #6c63ff; /* Color moderno */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ButtonCartItem:hover {
+  background: #5b52e6; /* Color de hover */
+}
+
+.custom-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
+  color: black;
+  background-color: #dc3545; /* Rojo intenso */
+  border: 2px solid #dc3545;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-btn:hover {
+  background-color: #f8d7da;
+  color: #a71d2a; /* Cambia el color del ícono */
+}
+
+.custom-btn:focus {
+  outline: none;
+}
+
+
+.HeaderCartItem-compact {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ItemHeaderCartItem-compact {
+  font-size: 0.95rem;
+}
+
+.ContainerItemCartItem-compact {
+  font-size: 0.8rem;
+}
+
+.ItemFooterCartItem-compact {
+  font-size: 0.85rem;
+  gap: 4px; /* Ajusta el espacio en modo compacto */
+}
+
+.InfoCartItem-compact {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.btn-compact {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  background: #dc3545;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid #dc3545;
+}
+
+.btn-compact:hover {
+  background-color: #f8d7da;
+  color: #a71d2a; /* Cambia el color del ícono */
+}

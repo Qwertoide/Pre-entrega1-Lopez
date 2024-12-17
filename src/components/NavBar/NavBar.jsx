@@ -4,15 +4,15 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { Link, NavLink } from 'react-router-dom';
+import "./NavBar.css"
 
 export default function NavBar() {
   return (
-    <Navbar className="navbar navbar-expand-lg bg-body-tertiary w-100">
+    <Navbar expand="lg" className="bg-body-tertiary">
 
-      <Container>
-        <Link className="navbar-brand" to="/"> Sorli </Link>
+      <Container >
+        <NavLink className="navbar-brand" to="/"> Sorli </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -41,15 +41,13 @@ export default function NavBar() {
             
             </NavDropdown>
             
-            <Nav.Link>
-              <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/contacto"
-              >
-                  Contacto
-              </Link>
-            </Nav.Link>
+            <NavLink
+              className="nav-link"
+              aria-current="page"
+              to="/contacto"
+            >
+              Contacto
+            </NavLink>
           
           </Nav>
         </Navbar.Collapse>

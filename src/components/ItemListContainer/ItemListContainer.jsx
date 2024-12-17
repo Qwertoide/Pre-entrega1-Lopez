@@ -1,66 +1,72 @@
 
 import { useEffect, useState } from "react";
-import { getItems, getItemsByCategory, getItemsByType, Items } from "../../asyncMock";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
-import { BotonesCategoria } from "../BotonesCategoria/BotonesCategoria"
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../services/firebase";
+import Home from "../Home/Home";
 
 
 
-export const Condicional= () => {
-  const { typeId, categoryId } = useParams();
-
-
-  const funciones = {
-
-    Productos: () => <BotonesCategoria/>,
-    Ceramica: () => <BotonesCategoria/>,
-    "Piso flotante": () => <BotonesCategoria/>,
-    Porcelanato: () => <BotonesCategoria/>,
-
-  }
-    
-
-  
-  const renderContenido = funciones[typeId] || funciones[categoryId] || (() => <div/>);
-  
-  return (
-    <div>
-      {renderContenido()}
-    </div>
-  );
-}
-
-
-
-function getKeyByValue(value) {
-  return Object.keys(Items).find((key) =>
-    Items[key].includes(value)
-  );
-}
 
 
 
 export default function ItemListContainer() {
     const [products, setProducts] = useState([])
     const {typeId} = useParams()
+
+
+    if (typeId === "Productos") {
+      useEffect(()=>{
+        const collectionRef = typeId 
+          ? query(collection(db, "products"), where("type", "==", typeId))
+          : collection(db, "products")
+  
+          getDocs(collectionRef)
+            .then((querySnapshot)=>{
+              const productos = querySnapshot.docs.map((doc)=>{
+                return {id: doc.id, ...doc.data()}
+              })
+              setProducts(productos)
+            })
+            .catch((err)=>{
+              <Home color="Red" text={err} />
+            })
+  
+      },[typeId])
+    } if (typeId === "Servicios") {
+      useEffect(()=>{
+        const collectionRef = typeId 
+          ? query(collection(db, "servicios"), where("type", "==", typeId))
+          : collection(db, "products")
+  
+          getDocs(collectionRef)
+            .then((querySnapshot)=>{
+              const productos = querySnapshot.docs.map((doc)=>{
+                return {id: doc.id, ...doc.data()}
+              })
+              setProducts(productos)
+            })
+            .catch((err)=>{
+              <Home color="Red" text={err} />
+            })
+  
+      },[typeId])
+      
+    }else{
+      <Home color="Red" text="Error 404"/>
+    }
+
     
-    useEffect(()=>{    
-          const asyncFunction = typeId ? getItemsByType : getItemsByCategory
-          asyncFunction(typeId)
-            .then(data => setProducts(data))
-    }, [typeId])
 
   return (
     <div>
 
       <br />
 
-      <h2> {typeId} </h2>
+      <h1 className="text-center"> {typeId} </h1>
 
       <br />
-
-      <Condicional/>
       
       <br />
       

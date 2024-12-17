@@ -1,62 +1,45 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Figure from 'react-bootstrap/Figure';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useCart } from "../../hooks/useCart";
+import './CartWidget.css';
+import CartItem from '../CartItem/CartItem';
 
-export default function CartWidget({totalPrecio, totalProductos}){
-    return(
-        <Dropdown>
+export default function CartWidget() {
+    const { cart, getTotal, totalQuantity, clearCart } = useCart();
+    const total = getTotal();
 
-                                
-                <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+    return (
+        <Dropdown align="end">
+            <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                <img
+                    src="../../../public/assets/img/carrito.png"
+                    className="CartImg"
+                    style={{ width: 25 }}
+                    alt="cart-widget"
+                />
+                {totalQuantity}
+            </Dropdown.Toggle>
 
-                    <Row>
-                        <Col>
-
-                                <Figure.Image 
-                                width={50}
-                                height={50}
-                                src="https://static.vecteezy.com/system/resources/thumbnails/019/787/018/small_2x/shopping-cart-icon-shopping-basket-on-transparent-background-free-png.png"
-                                />
-
-                        </Col>
-
-                        <Col>
-                            {totalProductos}
-                        </Col> 
-
-                    </Row>
+            <Dropdown.Menu className="custom-dropdown-menu">
                 
-                </Dropdown.Toggle>
-    
-                <Dropdown.Menu>
-    
-                    <Dropdown.ItemText>Total {totalPrecio}$</Dropdown.ItemText>
+                {cart.map((item) => (
+                <CartItem key={item.id} {...item} compact={true} />
+                ))}
 
-                    <Dropdown.Item>              
-                        <Link
-                        className="nav-link active"
-                        aria-current="page"
-                        to="/vaciar"
-                        >
-                        Vaciar
-                        </Link>
-                    </Dropdown.Item>
+                <Dropdown.ItemText className="fw-bold">Total: {total}$</Dropdown.ItemText>
 
-                    <Dropdown.Item >                        
-                        <Link
-                        className="nav-link active"
-                        aria-current="page"
-                        to="/checkout"
-                        >
+                <Dropdown.Item>
+                    <Link onClick={clearCart} className="nav-link active text-center" aria-current="page">
+                        Vaciar carrito
+                    </Link>
+                </Dropdown.Item>
+
+                <Dropdown.Item>
+                    <Link className="nav-link active text-center" to="/cart">
                         Comprar
-                        </Link>
-                    </Dropdown.Item>
-    
-                </Dropdown.Menu>
-    
-                
+                    </Link>
+                </Dropdown.Item>
+            </Dropdown.Menu>
         </Dropdown>
     );
 }
