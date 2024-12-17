@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom"
-import ItemCount from "../ItemCount/ItemCount"
-import { useCart } from "../../hooks/useCart"
+import { Link } from "react-router-dom";
+import ItemCount from "../ItemCount/ItemCount";
+import { useCart } from "../../hooks/useCart";
 import { useNotification } from "../../context/NotificationContext";
-
 
 export default function ItemDetail({ type, id, name, img, description, price, stock }) {
   const { addItem, isInCart } = useCart();
@@ -18,7 +17,6 @@ export default function ItemDetail({ type, id, name, img, description, price, st
     addItem(productToAdd);
     setNotification("success", `Se agregaron ${count} de ${name}`);
   };
-
 
   return (
     <div
@@ -38,15 +36,22 @@ export default function ItemDetail({ type, id, name, img, description, price, st
           <h4>{description}</h4>
           <br />
           <p>Precio: US$ {price}</p>
-          <p>Stock: {stock}</p>
+
+
+          {type === "Productos" && <p>Stock: {stock}</p>}
         </div>
 
         {
           isInCart(id) ? (
-          <Link to="/cart" className="btn btn-primary">Finalizar compra</Link>
-        ) : (
-          <ItemCount disponible={stock} onAdd={handleAdd} />
-        )}
+            <Link to="/cart" className="btn btn-primary">Finalizar compra</Link>
+          ) : (
+            <ItemCount 
+              disponible={stock} 
+              onAdd={handleAdd} 
+              type={type}  
+            />
+          )
+        }
 
       </div>
     </div>
